@@ -38,4 +38,18 @@ func init() {
 		password,
 		host,
 		dbName))
+	if err != nil {
+		log.Println(err)
+	}
+	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
+		return tablePrefix + defaultTableName
+	}
+	db.SingularTable(true)
+	db.LogMode(true)
+	db.DB().SetMaxIdleConns(10)
+	db.DB().SetMaxOpenConns(100)
+}
+
+func CloseDB() {
+	defer db.Close()
 }
