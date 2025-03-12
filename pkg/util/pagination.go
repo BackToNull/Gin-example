@@ -3,7 +3,7 @@ package util
 import (
 	"github.com/BackToNull/Gin-example/pkg/setting"
 	"github.com/gin-gonic/gin"
-	"github.com/unknwon/com"
+	"github.com/unknwon/com" //引入常见的工具包
 )
 
 func GetPage(c *gin.Context) int {

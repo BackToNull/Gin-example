@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/BackToNull/Gin-example/pkg/setting"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"log"
 )
