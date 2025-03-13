@@ -1,4 +1,4 @@
-use blog;
+ use blog;
 -- 标签表
 CREATE TABLE `blog_tag` (
                             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
