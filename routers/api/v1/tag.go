@@ -76,7 +76,7 @@ func AddTag(c *gin.Context) {
 
 // EditTag 修改文章标签
 func EditTag(c *gin.Context) {
-	id := com.StrTo(c.Query("id")).MustInt()
+	id := com.StrTo(c.Param("id")).MustInt()
 	name := c.Query("name")
 	modifiedBy := c.Query("modified_by")
 	valid := validation.Validation{}
@@ -108,6 +108,10 @@ func EditTag(c *gin.Context) {
 		} else {
 			code = e.ERROR_NOT_EXIST_TAG
 		}
+	} else {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
+		}
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -131,6 +135,10 @@ func DeleteTag(c *gin.Context) {
 			models.DeleteTag(id)
 		} else {
 			code = e.ERROR_NOT_EXIST_TAG
+		}
+	} else {
+		for _, err := range valid.Errors {
+			log.Println(err.Key, err.Message)
 		}
 	}
 
