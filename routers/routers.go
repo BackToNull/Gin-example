@@ -1,7 +1,9 @@
 package routers
 
 import (
+	"github.com/BackToNull/Gin-example/middleware/jwt"
 	"github.com/BackToNull/Gin-example/pkg/setting"
+	"github.com/BackToNull/Gin-example/routers/api"
 	v1 "github.com/BackToNull/Gin-example/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +14,10 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Recovery())
 	gin.SetMode(setting.RUNMode)
 
+	r.GET("/auth", api.GetAuth)
+
 	api_v1 := r.Group("api/v1")
+	api_v1.Use(jwt.JWT())
 	{
 		api_v1.GET("/tags", v1.GetTags)
 		api_v1.POST("/tags", v1.AddTag)

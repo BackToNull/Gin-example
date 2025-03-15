@@ -3,12 +3,12 @@ package v1
 import (
 	"github.com/BackToNull/Gin-example/models"
 	"github.com/BackToNull/Gin-example/pkg/e"
+	"github.com/BackToNull/Gin-example/pkg/logging"
 	"github.com/BackToNull/Gin-example/pkg/setting"
 	"github.com/BackToNull/Gin-example/pkg/util"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
-	"log"
 	"net/http"
 )
 
@@ -69,7 +69,7 @@ func AddTag(c *gin.Context) {
 		})
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 }
@@ -110,7 +110,7 @@ func EditTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 
@@ -138,7 +138,7 @@ func DeleteTag(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 

@@ -4,6 +4,7 @@ go 1.23.2
 
 require (
 	github.com/astaxie/beego v1.12.3
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-ini/ini v1.67.0
 	github.com/go-sql-driver/mysql v1.9.0
@@ -16,7 +17,6 @@ require (
 	github.com/bytedance/sonic v1.13.1 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
 	github.com/gin-contrib/sse v1.0.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
@@ -48,6 +48,7 @@ replace (
 	github.com/BackToNull/Gin-example/middleware => ./middleware
 	github.com/BackToNull/Gin-example/models => ./models
 	github.com/BackToNull/Gin-example/pkg/e => ./pkg/e
+	github.com/BackToNull/Gin-example/pkg/logging => ./pkg/logging
 	github.com/BackToNull/Gin-example/pkg/setting => ./pkg/setting
 	github.com/BackToNull/Gin-example/pkg/util => ./pkg/util
 	github.com/BackToNull/Gin-example/routers => ./routers
