@@ -1,5 +1,3 @@
--- 创建数据库
-CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 -- 切换数据库
 use blog;
 -- 标签表
@@ -39,4 +37,4 @@ CREATE TABLE `blog_auth` (
                              PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `blog`.`blog_auth` (`id`, `username`, `password`) VALUES (null, 'test', 'test123456');
+INSERT INTO `blog_auth` (`id`, `username`, `password`) VALUES (null, 'test', 'test123456');

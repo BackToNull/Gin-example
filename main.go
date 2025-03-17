@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	router := routers.InitRouter()
 
 	s := &http.Server{
