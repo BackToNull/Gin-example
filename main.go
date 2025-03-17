@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/BackToNull/Gin-example/models"
+	"github.com/BackToNull/Gin-example/pkg/logging"
 	"github.com/BackToNull/Gin-example/pkg/setting"
 	"github.com/BackToNull/Gin-example/routers"
 	"log"
@@ -10,13 +12,17 @@ import (
 
 func main() {
 
+	setting.Setup()
+	models.Setup()
+	logging.Setup()
+
 	router := routers.InitRouter()
 
 	s := &http.Server{
-		Addr:           fmt.Sprintf(":%d", setting.HTTPPORT),
+		Addr:           fmt.Sprintf(":%d", setting.ServerSetting.HttpPort),
 		Handler:        router,
-		ReadTimeout:    setting.ReadTimeout,
-		WriteTimeout:   setting.WriteTimeout,
+		ReadTimeout:    setting.ServerSetting.ReadTimeout,
+		WriteTimeout:   setting.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
 
