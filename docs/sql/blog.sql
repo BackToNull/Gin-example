@@ -1,4 +1,7 @@
- use blog;
+-- 创建数据库
+CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 切换数据库
+use blog;
 -- 标签表
 CREATE TABLE `blog_tag` (
                             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
