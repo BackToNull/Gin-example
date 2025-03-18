@@ -10,7 +10,7 @@ import (
 
 func UploadImage(c *gin.Context) {
 	code := e.SUCCESS
-	data := make(map[string])string)
+	data := make(map[string]string)
 
 	file, image, err := c.Request.FormFile("image")
 	if err != nil {
@@ -18,7 +18,7 @@ func UploadImage(c *gin.Context) {
 		code = e.ERROR
 		c.JSON(http.StatusOK, gin.H{
 			"code": code,
-			"msg": e.GetMsg(code),
+			"msg":  e.GetMsg(code),
 			"data": data,
 		})
 	}
@@ -38,7 +38,7 @@ func UploadImage(c *gin.Context) {
 			if err != nil {
 				logging.Warning(err)
 				code = e.ERROR_UPLOAD_CHECK_IMAGE_FAIL
-			} else if err := c.SaveUploadedFile(image, src; err != nil{
+			} else if err := c.SaveUploadedFile(image, src); err != nil {
 				logging.Warning(err)
 				code = e.ERROR_UPLOAD_SAVE_IMAGE_FAIL
 			} else {
@@ -48,9 +48,9 @@ func UploadImage(c *gin.Context) {
 		}
 	}
 
-	c.JSON(https.StatusOK, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"code": code,
-		"msg": e.GetMsg(code),
+		"msg":  e.GetMsg(code),
 		"data": data,
 	})
 }

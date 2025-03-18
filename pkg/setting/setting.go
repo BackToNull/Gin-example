@@ -7,8 +7,8 @@ import (
 )
 
 type App struct {
-	JwtSecret       string
 	PageSize        int
+	JwtSecret       string
 	RuntimeRootPath string
 
 	ImagePrefixUrl string
@@ -44,6 +44,16 @@ type Database struct {
 
 var DatabaseSetting = &Database{}
 
+type Redis struct {
+	Host        string
+	PassWord    string
+	MaxIdle     int
+	MaxActive   int
+	IdleTimeout time.Duration
+}
+
+var RedisSetting = &Redis{}
+
 func Setup() {
 	Cfg, err := ini.Load("conf/app.ini")
 	if err != nil {
@@ -66,4 +76,11 @@ func Setup() {
 	if err = Cfg.Section("database").MapTo(DatabaseSetting); err != nil {
 		log.Fatalf("Cfg.MapTo DatabaseSetting err: %v", err)
 	}
+
+	if err = Cfg.Section("Redis").MapTo(RedisSetting); err != nil {
+		log.Fatalf("Cfg.MapTo RedisSetting err: %v", err)
+	}
+	//log.Println(*AppSetting)
+	//log.Println(*ServerSetting)
+	//log.Println(*DatabaseSetting)
 }
