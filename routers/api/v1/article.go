@@ -5,8 +5,6 @@ import (
 	"github.com/BackToNull/Gin-example/pkg/app"
 	"github.com/BackToNull/Gin-example/pkg/e"
 	"github.com/BackToNull/Gin-example/pkg/logging"
-	"github.com/BackToNull/Gin-example/pkg/setting"
-	"github.com/BackToNull/Gin-example/pkg/util"
 	"github.com/BackToNull/Gin-example/service/article_service"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
@@ -45,8 +43,7 @@ func GetArticle(c *gin.Context) {
 }
 
 func GetArticles(c *gin.Context) {
-	data := make(map[string]interface{})
-	maps := make(map[string]interface{})
+	appG := app.Gin{C: c}
 	valid := validation.Validation{}
 	var state int = -1
 	if arg := c.Query("state"); arg != "" {
@@ -61,20 +58,7 @@ func GetArticles(c *gin.Context) {
 		valid.Min(tagID, 1, "tag_id").Message("标签ID必须大于0")
 	}
 	code := e.INVALID_PARAMS
-	if !valid.HasErrors() {
-		code = e.SUCCESS
-		data["lists"] = models.GetArticles(util.GetPage(c), setting.AppSetting.PageSize, maps)
-		data["total"] = models.GetArticleTotal(maps)
-	} else {
-		for _, err := range valid.Errors {
-			logging.Info(err.Key, err.Message)
-		}
-	}
-	c.JSON(http.StatusOK, gin.H{
-		"code": code,
-		"msg":  e.GetMsg(code),
-		"data": data,
-	})
+
 }
 
 func AddArticle(c *gin.Context) {
